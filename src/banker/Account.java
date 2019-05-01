@@ -2,6 +2,8 @@ package banker;
 
 import java.text.*;
 import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -13,17 +15,23 @@ import java.util.Date;
  *
  * @author Aycan 180303002
  */
-public class Account {
+
+abstract public class Account {
     int AccountType=0; //0:Ana hesap  1:ShortTerm  2:LongTerm  3:Current
     int Balance; //Hesap bakiyesi
     int Id; //Kullanıcı numarası
     Date tarih; //hesp açılış tarihi
     int faiz;
-    public Account() throws ParseException{
-        SimpleDateFormat temp=new SimpleDateFormat ("dd.MM.yyyy");
-        tarih=temp.parse("01.01.2019");
-    }
     
+    public Account(int ID){
+        Id=ID;
+        SimpleDateFormat temp=new SimpleDateFormat ("dd.MM.yyyy");
+        try {
+            tarih=temp.parse("01.01.2019");
+        } catch (ParseException ex) {
+            Logger.getLogger(Account.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
     /**
      * hesaba belirtilen miktarda para yatırır.
      * @param miktar hesaba yatırılan tutar

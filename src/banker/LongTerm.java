@@ -14,11 +14,6 @@ public class LongTerm extends Account{
     int AccountType=2;
     double faiz=0.24;
     public LongTerm() {
-        if(Balance >= 1500){
-            Balance += Balance*faiz;
-        }
-        else{
-            System.out.println("Yapmak istediğiniz işlem yetersiz bakiyeden dolayı geçersizdir.");
-        }
+        
     }
 }
