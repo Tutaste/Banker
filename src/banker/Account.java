@@ -38,14 +38,14 @@ abstract public class Account {
      */
     public void deposit(int miktar){
          Balance+=miktar;
-         System.out.println("Hesabınızda" +Balance+ "  ₺ bulunmaktadır.");
+         System.out.println("Hesabınızda" +Balance+ "  TL bulunmaktadır.");
     }
     
     public void withdraw(int miktar){
         //hesaptan para çeker
         if(miktar<=Balance){
             Balance=Balance-miktar;
-            System.out.println("Hesabınıza "+miktar+"₺ yatırıldı. Hesabınızda " +Balance+"₺ bulunmaktadır.");
+            System.out.println("Hesabınıza "+miktar+"TL yatırıldı. Hesabınızda " +Balance+"TL bulunmaktadır.");
         }
         else{
             System.out.println("Hesabınızda yeterli miktarda para bulunmamaktadır!");

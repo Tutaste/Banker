@@ -13,7 +13,8 @@ package banker;
 public class LongTerm extends Account{
     int AccountType=2;
     double faiz=0.24;
-    public LongTerm() {
-        
+    
+    public LongTerm(int ID) {
+        super(ID);
     }
 }
