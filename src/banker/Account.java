@@ -60,12 +60,19 @@ abstract public class Account {
         //Bakiyeyi verir
         return Balance;
     }
-    
+    /**
+     * Hesap numarasını verir.
+     * @return 
+     */
     public int getId(){
         //Hesap numarası verir
         return Id; 
     }
-    
+    /**
+     * Kar miktarını hesaplar.
+     * @param gün
+     * @return 
+     */
     public int Benefit(int gün){
         //kar miktarını hesaplar
         return 1;

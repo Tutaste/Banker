@@ -8,7 +8,7 @@ import java.util.Scanner;
  * Banka hesabı projemizde farklı hesap türleri 
  * üzerinden işlemler yapılabilmektedir.
  * 
- * @author  Aycan ÖZYILMAZ, Zeynep KIRMIZIBİBER, İlknur NACAK, Göknur BÜLBÜL, Zümrüt SATILMAZ
+ * @authors  Aycan ÖZYILMAZ, Zeynep KIRMIZIBİBER, İlknur NACAK, Göknur BÜLBÜL, Zümrüt SATILMAZ
  * @since   2019-05-08
  */
 public class Banker {
@@ -98,7 +98,7 @@ public class Banker {
         if(Balance >= 1000){
             ShortTerm hesap=new ShortTerm(ID);
             hesap.deposit(Balance);
-            banka.hesaplar.add(hesap);
+            banka.getAccount().add(hesap);
             System.out.println(ID+" hesap numaralı kısa vadeli hesap oluşturuldu. Hesapta "+Balance+"TL var.");
         }
         else{
@@ -110,7 +110,7 @@ public class Banker {
         if(Balance>=1500){
             LongTerm hesap=new LongTerm(ID);
             hesap.deposit(Balance);
-            banka.hesaplar.add(hesap);
+            banka.getAccount().add(hesap);
             System.out.println(ID+" hesap numaralı uzun vadeli hesap oluşturuldu. Hesapta "+Balance+"TL var.");
         }
         else{
@@ -121,16 +121,16 @@ public class Banker {
     public static void Create_C_ID_balance(int ID, int Balance){
         Current hesap=new Current(ID);
         hesap.deposit(Balance);
-        banka.hesaplar.add(hesap);
+        banka.getAccount().add(hesap);
         System.out.println(ID+" hesap numaralı cari hesap oluşturuldu. Hesapta "+Balance+"TL var.");
     }//end of Create_L_ID_balance
     
-    public static void Increase_ID_cash(int ID, int Cash){
-        banka.hesaplar.get(ID).deposit(Cash);
+    public static void Increase_ID_cash(int ID, int cash){
+        banka.deposit(ID,cash);
     }//end of Increase_ID_cash
     
     public static void Decrease_ID_cash(int ID, int Cash){
-        banka.hesaplar.get(ID).withdraw(Cash);
+        banka.Withdraw(ID, Cash);
     }//end of Decrease_ID_cash
     
     public static void Set_dd_mm_yy(){
@@ -138,14 +138,14 @@ public class Banker {
     }//end of Set_dd_mm_yy
     
     public static void ShowAccount(){
-        for(Account i: banka.hesaplar){
+        for(Account i: banka.getAccount()){
             System.out.println(i.getId());
         }     
         //devamı var
     }//end of ShowAccount
     
     public static void ShowIDs(){
-        for(Account i: banka.hesaplar){
+        for(Account i: banka.getAccount()){
             System.out.println(i.getId());
         }
     }//end of ShowIDs
