@@ -6,11 +6,12 @@ import java.util.ArrayList;
 import java.util.Date;
 
 /**
- *
- * @author badem
+ * Bank sınıfı tüm hesaplarının nesnelerini tutar.
  */
 public class Bank {
-    ArrayList<Account> hesaplar= new ArrayList<Account>(); 
+    ArrayList<Account> hesaplar= new ArrayList<Account>();
+    ArrayList<String> islemGecmisi= new ArrayList<String>();
+    
     private Date date;
     private int ID, cash;
     
@@ -31,6 +32,11 @@ public class Bank {
         return sdf.format(date.getTime()) ; 
     }
     
+    public void setDate(Date zaman){
+        date=zaman;
+    }
+    
+    
     /**
      * Belli edilen hesaba cash kadar para yatırır.
      * 
@@ -39,6 +45,7 @@ public class Bank {
      */
     public void deposit(int ID, int cash){
         hesaplar.get(ID-1).deposit(cash);
+        IslemKaydet(ID, "+", cash);
     }
     
     /**
@@ -48,7 +55,26 @@ public class Bank {
      * @param ID hesap numarası
      * @param cash hesaptan çekilecek para miktarı
      */
-    public int Withdraw(int ID, int cash){
-        //   
+    public void Withdraw(int ID, int cash){
+        hesaplar.get(ID-1).withdraw(cash);
+        IslemKaydet(ID, "-", cash);
     }
+    
+    public void IslemKaydet(int ID,String tip, int cash){
+        islemGecmisi.add(""+ID+" hesabı "+ tip + cash);
+        if (islemGecmisi.size()>5) {
+            islemGecmisi.remove(0);    
+        }
+    }
+    
+    public ArrayList<String> SonIslemler(){
+        return islemGecmisi;
+    }
+    
+    
+//    public String toString(){
+//        str= getDate()  +"tarihinde" +ID+"hesap numarasına " + deposit(int ID, int cash)+"tl yatırılmıştır. "+ Withdraw(int ID, int cash)+"tl çekilmiştir.";
+//        return str;
+//    }
+
 }

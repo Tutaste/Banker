@@ -30,6 +30,7 @@ public class Banker {
             System.out.println("4.Hesaba para yatır");
             System.out.println("5.Hesaptan para çek");
             System.out.println("6.Hesapları listele");
+            System.out.println("7.Yapılan son beş işlem");
             islem=input.nextInt();
             
             switch(islem){
@@ -43,8 +44,9 @@ public class Banker {
                     System.out.println("1 numaralı işlemi seçtiniz.");
                     break;
                 case 2:
-                    System.out.print("Hesap numarasını girin: ");
-                    int Id2=input.nextInt();
+//                    System.out.print("Hesap numarasını girin: ");
+//                    int Id2=input.nextInt();
+                    int Id2=banka.hesaplar.size()+1;
                     System.out.print("Başlangıç bakiyesini girin: ");
                     int Balance2=input.nextInt();
                     Create_L_ID_balance(Id2,Balance2);
@@ -75,22 +77,19 @@ public class Banker {
                     System.out.println("5 numaralı işlemi seçtiniz.");
                     break;
                 case 6:
-                    ShowAccount();
-                    System.out.println("6 numaralı işlemi seçtiniz.");
+                    ShowIDs();
                     break;
                 case 7:
-                    //
+                    ShowAccount();
+                    System.out.println("7 numaralı işlemi seçtiniz.");
                     break;
 
-                case 8:
-                    //
-                    break;
             }
         }while(islem!=0);
     }//end of main
     
     /**
-     * Başlangıç miktarı ile kısa vadeli bir hesap açar.
+     * Kısa vadeli bir hesap açar.
      * @param ID
      * @param Balance 
      */
@@ -106,6 +105,11 @@ public class Banker {
         }        
     }//end of Create_S_ID_balance
     
+    /**
+     * Uzun vadeli bir hesap açar.
+     * @param ID
+     * @param Balance 
+     */
     public static void Create_L_ID_balance(int ID, int Balance){
         if(Balance>=1500){
             LongTerm hesap=new LongTerm(ID);
@@ -118,6 +122,11 @@ public class Banker {
         }
     }//end of Create_L_ID_balance
     
+    /**
+     * Cari bir hesap açar.
+     * @param ID
+     * @param Balance 
+     */
     public static void Create_C_ID_balance(int ID, int Balance){
         Current hesap=new Current(ID);
         hesap.deposit(Balance);
@@ -125,25 +134,47 @@ public class Banker {
         System.out.println(ID+" hesap numaralı cari hesap oluşturuldu. Hesapta "+Balance+"TL var.");
     }//end of Create_L_ID_balance
     
+    /**
+     * ID numarası verilen hesaba cash kadar para ekler.
+     * @param ID
+     * @param cash
+     */
     public static void Increase_ID_cash(int ID, int cash){
         banka.deposit(ID,cash);
+        
     }//end of Increase_ID_cash
     
+    /**
+     * ID numarası verilen hesaptan cash kadar para çeker.
+     * @param ID
+     * @param cash
+     */
     public static void Decrease_ID_cash(int ID, int Cash){
         banka.Withdraw(ID, Cash);
     }//end of Decrease_ID_cash
+    
     
     public static void Set_dd_mm_yy(){
         
     }//end of Set_dd_mm_yy
     
+    /**
+     * Tüm hesaplar için ID ve son 5 işlemi gösterir.
+     */
     public static void ShowAccount(){
         for(Account i: banka.getAccount()){
-            System.out.println(i.getId());
-        }     
-        //devamı var
+            System.out.print("Hesap numarası:" +i.getId());
+            System.out.println(", faiz miktarı: " + i.Benefit());
+        }   
+        //System.out.println(banka.islemGecmisi.get(0));
+        for(String i: banka.SonIslemler()){
+            System.out.println(i);
+        }
     }//end of ShowAccount
     
+    /**
+     * Tüm hesap numaralarını listeler.
+     */
     public static void ShowIDs(){
         for(Account i: banka.getAccount()){
             System.out.println(i.getId());
