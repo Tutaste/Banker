@@ -1,7 +1,7 @@
-
 package banker;
 
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -9,72 +9,70 @@ import java.util.Date;
  * Bank sınıfı tüm hesaplarının nesnelerini tutar.
  */
 public class Bank {
-    ArrayList<Account> hesaplar= new ArrayList<Account>();
-    ArrayList<String> islemGecmisi= new ArrayList<String>();
-    
-    private Date date;
+
+    ArrayList<Account> hesaplar = new ArrayList<Account>();
+    ArrayList<String> islemGecmisi = new ArrayList<String>();
+
     private int ID, cash;
-    
+
     /**
      * Mevcut hesapların listesini verir.
-     * @return 
+     *
+     * @return
      */
-    public ArrayList<Account> getAccount(){
-        return hesaplar; 
+    public ArrayList<Account> getAccount() {
+        return hesaplar;
     }
-    
+
     /**
-     * Sistemin şu anki tarihini gösterir.
-     * @return 
+     * Sistemin şu anki tarihini verir.
+     *
+     * @return
      */
-    public String getDate(){
-        SimpleDateFormat sdf = new SimpleDateFormat("dd.MM.yyyy");
-        return sdf.format(date.getTime()) ; 
+    public LocalDate getDate() {
+        LocalDate tarih = LocalDate.now();
+        return tarih;
     }
-    
-    public void setDate(Date zaman){
-        date=zaman;
-    }
-    
-    
+
     /**
      * Belli edilen hesaba cash kadar para yatırır.
-     * 
+     *
      * @param ID hesap numarası
      * @param cash hasaba yatırılacak para miktarı
      */
-    public void deposit(int ID, int cash){
-        hesaplar.get(ID-1).deposit(cash);
+    public void deposit(int ID, int cash) {
+        hesaplar.get(ID - 1).deposit(cash);
         IslemKaydet(ID, "+", cash);
     }
-    
+
     /**
-     * Mümkün ise belli edilen hesaptan belirli 
-     * miktarda para çeker. İşlemin yapılıp yapılamadığını 
-     * ekranda gösterir.
+     * Mümkün ise belli edilen hesaptan belirli miktarda para çeker. İşlemin
+     * yapılıp yapılamadığını ekranda gösterir.
+     *
      * @param ID hesap numarası
      * @param cash hesaptan çekilecek para miktarı
      */
-    public void Withdraw(int ID, int cash){
-        hesaplar.get(ID-1).withdraw(cash);
+    public void Withdraw(int ID, int cash) {
+        hesaplar.get(ID - 1).withdraw(cash);
         IslemKaydet(ID, "-", cash);
     }
-    
-    public void IslemKaydet(int ID,String tip, int cash){
-        islemGecmisi.add(""+ID+" hesabı "+ tip + cash);
-        if (islemGecmisi.size()>5) {
-            islemGecmisi.remove(0);    
+
+    /**
+     * Yapılan işlemleri islemGecmisi listesine ekler
+     * 
+     * @param ID hesap numarası
+     * @param cash çekilen ya da yatırılan para miktarı
+     * @param tip yapılan işlem tipi
+     */
+    public void IslemKaydet(int ID, String tip, int cash) {
+        islemGecmisi.add("" + ID + " hesabı " + tip + cash);
+        if (islemGecmisi.size() > 5) {
+            islemGecmisi.remove(0);
         }
     }
     
-    public ArrayList<String> SonIslemler(){
+    public ArrayList<String> SonIslemler() {
         return islemGecmisi;
     }
-    
-    
-//    public String toString(){
-//        str= getDate()  +"tarihinde" +ID+"hesap numarasına " + deposit(int ID, int cash)+"tl yatırılmıştır. "+ Withdraw(int ID, int cash)+"tl çekilmiştir.";
-//        return str;
-//    }
 
 }

@@ -1,6 +1,4 @@
-
 package banker;
-
 
 import java.util.Scanner;
 
@@ -12,78 +10,70 @@ import java.util.Scanner;
  * @since   2019-05-08
  */
 public class Banker {
-    /**
-     * @param args the command line arguments
-     */
+    
     static Bank banka=new Bank(); //Bank sınıfından yeni banka nesnesi oluşturduk.
 
     public static void main(String[] args) {
         Scanner input=new Scanner(System.in);
-        //TODO   Ekrana yazma işlemini basitleştir.
-        //ShortTerm hesap=new ShortTerm();
         int islem;
         do{
             System.out.println("Yapacağınız işlem numarasını giriniz veya çıkmak için 0 girin:");
-            System.out.println("1.Kısa vadeli hesap aç");
-            System.out.println("2.Uzun vadeli hesap aç");
-            System.out.println("3.Cari hesap aç");
-            System.out.println("4.Hesaba para yatır");
-            System.out.println("5.Hesaptan para çek");
-            System.out.println("6.Hesapları listele");
-            System.out.println("7.Yapılan son beş işlem");
+            System.out.println("1.Kısa vadeli hesap aç.");
+            System.out.println("2.Uzun vadeli hesap aç.");
+            System.out.println("3.Cari hesap aç.");
+            System.out.println("4.Hesaba para yatır.");
+            System.out.println("5.Hesaptan para çek.");
+            System.out.println("6.Hesap numaralarını listele.");
+            System.out.println("7.Hesaplar için faiz miktarı ve yapılan son beş işlem.");
+            System.out.println("≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈");
             islem=input.nextInt();
             
             switch(islem){
                 case 1:
-//                    System.out.print("Hesap numarasını girin: ");
-//                    int Id=input.nextInt();
                     int Id=banka.hesaplar.size()+1;
                     System.out.print("Başlangıç bakiyesini girin: ");
                     int Balance=input.nextInt();
                     Create_S_ID_balance(Id,Balance);
-                    System.out.println("1 numaralı işlemi seçtiniz.");
+                    System.out.println("≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈");
                     break;
                 case 2:
-//                    System.out.print("Hesap numarasını girin: ");
-//                    int Id2=input.nextInt();
                     int Id2=banka.hesaplar.size()+1;
                     System.out.print("Başlangıç bakiyesini girin: ");
                     int Balance2=input.nextInt();
                     Create_L_ID_balance(Id2,Balance2);
-                    System.out.println("2 numaralı işlemi seçtiniz.");
+                    System.out.println("≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈");
                     break;
                 case 3:
-                    System.out.print("Hesap numarasını girin: ");
-                    int Id3=input.nextInt();
+                    int Id3=banka.hesaplar.size()+1;
                     System.out.print("Başlangıç bakiyesini girin: ");
                     int Balance3=input.nextInt();
                     Create_C_ID_balance(Id3,Balance3);
-                    System.out.println("3 numaralı işlemi seçtiniz.");        
+                    System.out.println("≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈");        
                     break;
                 case 4:
                     System.out.print("Hesap numarasını girin: ");
                     int Id4=input.nextInt();
-                    System.out.println("Hesaba yatırmak istediğiniz miktarı giriniz:");
+                    System.out.print("Hesaba yatırmak istediğiniz miktarı giriniz:");
                     int cash4=input.nextInt();
                     Increase_ID_cash(Id4,cash4);
-                    System.out.println("4 numaralı işlemi seçtiniz.");
+                    System.out.println("≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈");
                     break;
                 case 5:
                     System.out.print("Hesap numarasını girin: ");
                     int Id5=input.nextInt();
-                    System.out.println("Hesabınızdan çekmek istediğiniz miktarı giriniz:");
+                    System.out.print("Hesabınızdan çekmek istediğiniz miktarı giriniz:");
                     int cash5=input.nextInt();
                     Decrease_ID_cash(Id5,cash5);
-                    System.out.println("5 numaralı işlemi seçtiniz.");
+                    System.out.println("≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈");
                     break;
                 case 6:
                     ShowIDs();
+                    System.out.println("≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈");
                     break;
                 case 7:
                     ShowAccount();
-                    System.out.println("7 numaralı işlemi seçtiniz.");
+                    System.out.println("≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈");
                     break;
-
             }
         }while(islem!=0);
     }//end of main
@@ -98,7 +88,7 @@ public class Banker {
             ShortTerm hesap=new ShortTerm(ID);
             hesap.deposit(Balance);
             banka.getAccount().add(hesap);
-            System.out.println(ID+" hesap numaralı kısa vadeli hesap oluşturuldu. Hesapta "+Balance+"TL var.");
+            System.out.println("Hesap numarası "+ ID +" olan kısa vadeli bir hesap oluşturuldu.Hesapta "+Balance+" TL var.");
         }
         else{
             System.out.println("Hesap açmak için en az 1000 TL gerekli.Hesap açılamadı.");
@@ -115,7 +105,7 @@ public class Banker {
             LongTerm hesap=new LongTerm(ID);
             hesap.deposit(Balance);
             banka.getAccount().add(hesap);
-            System.out.println(ID+" hesap numaralı uzun vadeli hesap oluşturuldu. Hesapta "+Balance+"TL var.");
+            System.out.println("Hesap numarası "+ID+" olan uzun vadeli bir hesap oluşturuldu.Hesapta "+Balance+" TL var.");
         }
         else{
             System.out.println("Hesap açmak için en az 1500 TL gerekli.Hesap açılamadı.");
@@ -131,7 +121,7 @@ public class Banker {
         Current hesap=new Current(ID);
         hesap.deposit(Balance);
         banka.getAccount().add(hesap);
-        System.out.println(ID+" hesap numaralı cari hesap oluşturuldu. Hesapta "+Balance+"TL var.");
+        System.out.println("Hesap numarası "+ ID +" olan bir cari hesap oluşturuldu.Hesapta "+Balance+" TL var.");
     }//end of Create_L_ID_balance
     
     /**
@@ -177,7 +167,7 @@ public class Banker {
      */
     public static void ShowIDs(){
         for(Account i: banka.getAccount()){
-            System.out.println(i.getId());
+            System.out.println(i.getId()+ " numaralı hesap.");
         }
     }//end of ShowIDs
 
