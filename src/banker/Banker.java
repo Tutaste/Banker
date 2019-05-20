@@ -1,5 +1,6 @@
 package banker;
 
+import java.time.LocalDate;
 import java.util.Scanner;
 
 /**
@@ -7,7 +8,7 @@ import java.util.Scanner;
  * üzerinden işlemler yapılabilmektedir.
  * 
  * @authors  Aycan ÖZYILMAZ, Zeynep KIRMIZIBİBER, İlknur NACAK, Göknur BÜLBÜL, Zümrüt SATILMAZ
- * @since   2019-05-08
+ * 
  */
 public class Banker {
     
@@ -17,6 +18,8 @@ public class Banker {
         Scanner input=new Scanner(System.in);
         int islem;
         do{
+            Set_dd_mm_yy();
+            System.out.println();
             System.out.println("Yapacağınız işlem numarasını giriniz veya çıkmak için 0 girin:");
             System.out.println("1.Kısa vadeli hesap aç.");
             System.out.println("2.Uzun vadeli hesap aç.");
@@ -145,7 +148,8 @@ public class Banker {
     
     
     public static void Set_dd_mm_yy(){
-        
+        LocalDate anlıkGun= LocalDate.now();
+        System.out.print(anlıkGun);
     }//end of Set_dd_mm_yy
     
     /**
