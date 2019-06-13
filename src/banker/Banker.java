@@ -6,9 +6,6 @@ import java.util.Scanner;
 /**
  * Banka hesabı projemizde farklı hesap türleri 
  * üzerinden işlemler yapılabilmektedir.
- * 
- * @authors  Aycan ÖZYILMAZ, Zeynep KIRMIZIBİBER, İlknur NACAK, Göknur BÜLBÜL, Zümrüt SATILMAZ
- * 
  */
 public class Banker {
     
